@@ -1,0 +1,40 @@
+import pygame
+from screeninfo import get_monitors
+
+# window res
+monitors = get_monitors()
+RES = WIDTH, HEIGHT = monitors[0].width, monitors[0].height - 75
+
+# tile declaration
+TILE = TILE_WIDTH, TILE_HEIGHT = 64, 64
+
+# layer amount
+LAYER_AMOUNT = 10  # >= 1
+
+# control information
+SCROLL_WHEEL_SPEED = 8
+SCROLL_SPEED = 2
+
+# side panel information
+SIDE_PANEL_WIDTH = WIDTH / 4.75
+SCROLLBAR_WIDTH = 15
+
+SPACE_BETWEEN_BUTTONS = max(TILE_WIDTH, TILE_HEIGHT) + 10
+COLUMN_WIDTH = (SIDE_PANEL_WIDTH - SCROLLBAR_WIDTH) // SPACE_BETWEEN_BUTTONS
+
+SPACE_BETWEEN_CHECKBOX = 80
+CHECKBOX_COLUMN_WIDTH = (SIDE_PANEL_WIDTH - SCROLLBAR_WIDTH) // SPACE_BETWEEN_CHECKBOX
+
+MARGIN = (SIDE_PANEL_WIDTH - (COLUMN_WIDTH * SPACE_BETWEEN_BUTTONS) + (SPACE_BETWEEN_BUTTONS - TILE_WIDTH) - SCROLLBAR_WIDTH) / 2
+
+# visible tiles on screen declaration
+VISIBLE_TILE_AMOUNT_X = int((WIDTH - SIDE_PANEL_WIDTH) // TILE_WIDTH + 2)
+VISIBLE_TILE_AMOUNT_Y = int(HEIGHT // TILE_HEIGHT + 2)
+
+# color declaration
+WHITE = (255, 255, 255)
+GREY = (60, 63, 65)
+BLACK = (0, 0, 0)
+LIGHT_GREY = (169, 169, 169)
+MID_LIGHT_GREY = (127, 127, 127)
+TRANSPARENT_RED = (255, 0, 0, 90)
