@@ -11,13 +11,13 @@ class Scrollbar:
 
     def draw(self):
         if self.small_rect.collidepoint(self.game.mouse_pos):
-            if self.game.key_down_1 and self.game.first_key_down_1:
+            if self.game.first_key_down_1:
                 self.clicked = True
                 if self.first:
                     pygame.mouse.get_rel()  # Reset relative movement
                     self.first = False
         elif self.long_rect.collidepoint(self.game.mouse_pos):
-            if self.game.key_down_1 and self.game.first_key_down_1:
+            if self.game.first_key_down_1:
                 self.small_rect.y = self.game.mouse_pos[1] - self.small_rect.h // 2
 
         if not self.game.key_down_1:

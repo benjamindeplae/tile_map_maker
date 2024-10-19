@@ -19,7 +19,6 @@ class Animation(pygame.sprite.Sprite):
             flip_y = tuple_rect.get('flip_y', False)
             img = pygame.transform.flip(img, flip_x, flip_y).convert_alpha()
             self.images.append((img, (offset_x, offset_y)))
-
         self.image = self.images[0]
         self.animation_time_prev = pygame.time.get_ticks()
         self.animation_trigger = False
@@ -34,7 +33,8 @@ class Animation(pygame.sprite.Sprite):
         if self.animation_trigger:
             images.rotate(-1)
             self.image = images[0]
-            self.game.create_transparent_current_tile()
+            if self.game.img_list[self.game.current_tile] == self:
+                self.game.create_transparent_current_tile()
 
     def check_animation_time(self):
         self.animation_trigger = False

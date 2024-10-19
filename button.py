@@ -3,10 +3,13 @@ from settings import *
 
 class Button:
 	def __init__(self, game, x, y, image, scale):
-		width = image.get_width()
-		height = image.get_height()
+		img_width, img_height = image.get_width(), image.get_height()
+		if img_width < img_height:
+			image = pygame.transform.scale(image, (int(TILE_WIDTH * (img_width / img_height) * scale), int(TILE_HEIGHT * scale))).convert_alpha()
+		else:
+			image = pygame.transform.scale(image, (int(TILE_WIDTH * scale), int(TILE_HEIGHT * (img_height / img_width) * scale))).convert_alpha()
 		self.game = game
-		self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
+		self.image = image
 		self.rect = self.image.get_rect()
 		self.offset = [0, 0]
 		if image.get_width() < TILE_WIDTH:
@@ -24,7 +27,7 @@ class Button:
 		if self.offset_rect.collidepoint(self.game.mouse_pos):
 			if not self.game.enable_hand:
 				self.game.enable_hand_cursor()
-			if self.game.key_down_1 and self.game.first_key_down_1:
+			if self.game.first_key_down_1:
 				action = True
 
 		self.game.screen.blit(self.image, (self.offset_rect.x + self.offset[0], self.offset_rect.y + self.offset[1]))

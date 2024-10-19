@@ -12,9 +12,8 @@ class Checkbox:
 
 	def draw(self):
 		if self.offset_rect.collidepoint(self.game.mouse_pos):
-			if not self.game.enable_hand:
-				self.game.enable_hand_cursor()
-			if self.game.key_down_1 and self.game.first_key_down_1:
+			self.game.enable_hand_cursor()
+			if self.game.first_key_down_1:
 				if self.is_on:
 					if len(self.game.active_layers) > 1:
 						self.is_on = False
